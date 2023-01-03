@@ -19,8 +19,13 @@ void WifiConnector::start()
   logger.info("Start");
 
   // Setup Wifi
+  WiFi.persistent(false);
+  WiFi.disconnect(true);
+  delay(200);
+
   WiFi.mode(WIFI_STA);
   WiFi.hostname(WIFI_HOSTNAME);
+  if (!WiFi.getAutoConnect()) { WiFi.setAutoConnect(true); }
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   // This funtion is called from main setup function,

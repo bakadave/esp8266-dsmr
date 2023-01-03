@@ -1,8 +1,6 @@
 #include "MQTTPublisher.h"
 #include "Settings.h"
 
-#pragma once
-
 WiFiClient espClient;
 PubSubClient client(espClient);
 
@@ -27,6 +25,7 @@ bool MQTTPublisher::reconnect()
   {
     logger.info("Connecting with credientials");
     clientConnected = client.connect(_identifier.c_str(), MQTT_USER_NAME, MQTT_PASSWORD);
+    //clientConnected = client.connect(_identifier.c_str(), MQTT_USER_NAME, MQTT_PASSWORD, String(_identifier + "/status").c_str(), 1, true, WILL_MESSAGE, MQTT_CLEAN_SESSION);
   }
   else
   {
